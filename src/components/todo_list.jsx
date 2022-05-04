@@ -1,13 +1,15 @@
 import React from "react";
 
 function TodoList(props){
-    console.log(props.todoList);
   return  <div>
       <p>Todo List</p>
-      <ul type="i">
-       {props.todoList.map(item=>(
-           <li>{item}</li>
-       ))}
+      <ul >
+       {props.todoList.map(item=>( 
+          <>
+          {item.index}.    {item.title} 
+         <input type="checkbox" checked={item.status==="True"}></input>
+         <br/>   </>       
+          ))}
       </ul>
     </div>
 }
