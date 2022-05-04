@@ -7,8 +7,11 @@ export default function CreateComponent(props){
 function addButton(event){
 
     event.preventDefault();
-    props.onClick(inputRef.current.value);
-    inputRef.current.value='';
+   if(inputRef.current.value===''){
+       return;
+   }
+   props.onClick(inputRef.current.value);
+   inputRef.current.value='';
 }
     return <div>
    <form onSubmit={addButton}>
