@@ -6,8 +6,8 @@ import { useState } from "react";
 function App() {
   const [list, addTodo] = useState([]);
   function handleClick(e) {
-    list.push(e);
-    addTodo(list);
+    // list.push(e);
+    addTodo((oldArray) => [e, ...oldArray]);
   }
   return (
     <div className="App">
