@@ -11,7 +11,7 @@ function App() {
   return (
     <AppContext.Provider value={{ AppName }}>
       <div className="App">
-        <h2>Parent content below</h2>
+        <h2>Parent content below app.js</h2>
         <Parent />
       </div>
     </AppContext.Provider>
