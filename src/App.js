@@ -8,6 +8,7 @@ import Parent from "./components/parent";
 function App() {
   return (
     <div className="App">
+      <h2>Parent content below</h2>
       <Parent />
     </div>
   );
