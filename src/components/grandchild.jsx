@@ -19,7 +19,7 @@ export default function GrandChild(){
         <div>
         <h1>I am GrandChild: {AppName}</h1>
         <span>Peoduct list</span><br/>
-       {
+        {productList.length===0?(<><h1>Is loading</h1></>) : 
            productList.map((product)=>{
               return (
                 <>
@@ -30,7 +30,8 @@ export default function GrandChild(){
                 );
                
            })
-       }
+       } 
+      
         </div>
     );
 }
