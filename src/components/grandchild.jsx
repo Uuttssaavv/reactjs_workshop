@@ -3,22 +3,35 @@ import { AppContext } from "../appContext";
 import axios from 'axios';
 export default function GrandChild(){
     const {AppName}=useContext(AppContext);
-   const [productList,setProductList]= useState([]);    
+    const [productList,setProductList]= useState([]); 
+    const [page,setPage]=useState(0);
+    
     useEffect(()=>{
     getProductList();
-    },[]);
-    const getProductList=async()=>{
-      const response=await  axios.get('https://dummyjson.com/products');
-    //     // handle success
+    },[page]);
+     const getProductList=async()=>{
+   try{ 
+       setProductList([]);    
+       const response=await  axios.get(`https://dummyjson.com/products/?skip=${(page)*10}&limit=10`); 
        setProductList(response['data']['products']);
-    // console.log(response['data']['products']);
-    // console.log(response);
-     
+     }catch(e){
+         //
+     }
+    }
+     function  changePage (oper) {
+         if(oper==='prev'){
+        setPage(page-1);  
+         }else{
+        setPage(page+1);  
+         }
     }
     return (
         <div>
         <h1>I am GrandChild: {AppName}</h1>
-        <span>Peoduct list</span><br/>
+        <span>Product list page={page} skip={page*10}</span><br/>
+        <button onClick={()=>changePage('prev')}>Prev page</button><tab/>
+        <button onClick={()=>changePage('')}>Next page</button>
+     <br/><br/><br/>
         {productList.length===0?(<><h1>Is loading</h1></>) : 
            productList.map((product)=>{
               return (
