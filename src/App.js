@@ -4,13 +4,17 @@ import "./App.css";
 // import Page1 from "./components/page1";
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Parent from "./components/parent";
+import { AppContext } from "./appContext";
 
 function App() {
+  const AppName = "THis is appname";
   return (
-    <div className="App">
-      <h2>Parent content below</h2>
-      <Parent />
-    </div>
+    <AppContext.Provider value={{ AppName }}>
+      <div className="App">
+        <h2>Parent content below</h2>
+        <Parent />
+      </div>
+    </AppContext.Provider>
   );
 }
 
