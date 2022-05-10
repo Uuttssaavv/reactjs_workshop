@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { login } from "./utility";
 
 const initialState = {
@@ -7,15 +8,53 @@ const initialState = {
   error: "",
   isLoggedIn: false,
 };
+const loginReducer = (state, action) => {
+  switch (action.type) {
+    case "filled": {
+      return {
+        //
+      };
+    }
+    case "success": {
+      return {
+        ...state,
+        isLoggedIn: true,
+        isLoading: false,
+        error: "",
+      };
+    }
+    case "error": {
+      return {
+        ...state,
+        error: "Username or Password doesn't match",
+        isLoggedIn: false,
+        isLoading: false,
+      };
+    }
+    case "loggedOut": {
+      return {
+        ...state,
+        isLoggedIn: false,
+        isLoading: false,
+      };
+    }
 
+    default:
+      return state;
+  }
+};
 export default function LoginPage() {
+  const [stateObject, dispatchFunction] = useReducer(
+    loginReducer,
+    initialState
+  );
   const submitLoginForm = async (e) => {
     e.preventDefault();
     try {
-      await login({ username: "test", password: "test" });
-      console.log("logged in");
+      await login({ username: "test1", password: "test" });
+      alert("success");
     } catch (error) {
-      console.log("error occured" + error);
+      alert("failure");
     }
   };
   return (
