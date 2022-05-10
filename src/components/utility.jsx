@@ -2,9 +2,9 @@ export const login = async ({ username, password }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (username === "test" && password === "test") {
-        resolve();
+        resolve("logged in");
       } else {
-        reject();
+        reject("Unable to login");
       }
     }, 1000);
   });
