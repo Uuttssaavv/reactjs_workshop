@@ -5,6 +5,7 @@ import Error404 from "./components/404";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GrandChild from "./components/grandchild";
 import ProductDetails from "./components/productDetails";
+import LoginPage from "./components/login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/products" element={<GrandChild />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/" element={<GrandChild />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
