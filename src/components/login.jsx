@@ -62,6 +62,7 @@ export default function LoginPage() {
         type: "success",
       });
     } catch (error) {
+      //
       dispatchFunction({ type: "error" });
     }
   };
