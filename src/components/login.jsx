@@ -48,27 +48,51 @@ export default function LoginPage() {
     loginReducer,
     initialState
   );
+  const fieldChange = (e, key) => {
+    if (key === "username") {
+      stateObject.userName = e.target.value;
+    } else {
+      stateObject.password = e.target.value;
+    }
+  };
   const submitLoginForm = async (e) => {
     e.preventDefault();
     try {
-      await login({ username: "test1", password: "test" });
-      alert("success");
+      await login({
+        username: stateObject.userName,
+        password: stateObject.password,
+      });
+      dispatchFunction({ type: "success" });
     } catch (error) {
-      alert("failure");
+      dispatchFunction({ type: "error" });
     }
   };
   return (
     <div style={{ margin: "1rem" }}>
-      <form>
-        <input type="text" placeholder="User Name" />
-        <br />
-        <br />
-        <input type="text" placeholder="Password" />
-        <br />
-        <button style={{ margin: "1rem" }} onClick={submitLoginForm}>
-          Login
-        </button>
-      </form>
+      {stateObject.error !== "" ? (
+        <h2>Error occured {stateObject.error}</h2>
+      ) : stateObject.isLoggedIn ? (
+        <h2>Login successful</h2>
+      ) : (
+        <form>
+          <input
+            type="text"
+            placeholder="User Name"
+            onChange={(e) => fieldChange(e, "username")}
+          />
+          <br />
+          <br />
+          <input
+            type="text"
+            placeholder="Password"
+            onChange={(e) => fieldChange(e, "password")}
+          />
+          <br />
+          <button style={{ margin: "1rem" }} onClick={submitLoginForm}>
+            Login
+          </button>
+        </form>
+      )}
     </div>
   );
 }
