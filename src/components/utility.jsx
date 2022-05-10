@@ -4,7 +4,7 @@ export const login = async ({ username, password }) => {
       if (username === "test" && password === "test") {
         resolve();
       } else {
-        reject();
+        reject("fsfas");
       }
     }, 1000);
   });
