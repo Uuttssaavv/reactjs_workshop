@@ -1,13 +1,12 @@
-import React,{ useContext,useState, useEffect } from "react";
-import { AppContext } from "../appContext";
+import React,{ useState, useEffect } from "react";
 import axios from 'axios';
 export default function GrandChild(){
-    const {AppName}=useContext(AppContext);
     const [productList,setProductList]= useState([]); 
     const [page,setPage]=useState(0);
     
     useEffect(()=>{
     getProductList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[page]);
      const getProductList=async()=>{
    try{ 
@@ -27,19 +26,18 @@ export default function GrandChild(){
     }
     return (
         <div>
-        <h1>I am GrandChild: {AppName}</h1>
-        <span>Product list page={page} skip={page*10}</span><br/>
-        <button onClick={()=>changePage('prev')}>Prev page</button><tab/>
-        <button onClick={()=>changePage('')}>Next page</button>
+            <h1>{location.pathname}</h1>
+    {page!==0&& (   <button onClick={()=>changePage('prev')}>Prev page</button>
+        ) }     <button onClick={()=>changePage('')}>Next page</button>
      <br/><br/><br/>
         {productList.length===0?(<><h1>Is loading</h1></>) : 
            productList.map((product)=>{
               return (
-                <>
+                <button >
                 <img src={product.images[0]} height={'100px'} width={'100px'} alt="images"/><br/>
                 <span>Name: {product.title}</span><br/>
                 <span>Price: {product.price}</span><br/>
-                </>
+                </button>
                 );
                
            })
