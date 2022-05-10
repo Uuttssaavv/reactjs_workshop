@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import ProductComponent from "./product_component";
+import ClipLoader from "react-spinners/ClipLoader";
 export default function ProductDetails() {
   const location = useLocation();
   const [product, setProduct] = useState(null);
@@ -28,7 +29,10 @@ export default function ProductDetails() {
     <>
       <div>
         {product === null ? (
-          <h2>isLoading</h2>
+          <div className="flex flex-col justify-center items-center justify-self-center">
+            <h2 className="mb-1 text-primary text-center">Fetching Data...</h2>
+            <ClipLoader color="#4682B4" loading={true} />
+          </div>
         ) : (
           <ProductComponent product={product} />
         )}
