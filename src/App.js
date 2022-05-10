@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/productlist" element={<GrandChild />} />
-          <Route path="/productDetails" element={<ProductDetails />} />
+          <Route path="/products" element={<GrandChild />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/" element={<GrandChild />} />
         </Routes>
       </BrowserRouter>
