@@ -12,7 +12,8 @@ const loginReducer = (state, action) => {
   switch (action.type) {
     case "filled": {
       return {
-        //
+        ...state,
+        [action.fieldname]: action.payload,
       };
     }
     case "success": {
@@ -48,27 +49,62 @@ export default function LoginPage() {
     loginReducer,
     initialState
   );
+
+  const { username, password, isLoggedIn, error } = stateObject;
   const submitLoginForm = async (e) => {
     e.preventDefault();
     try {
-      await login({ username: "test1", password: "test" });
-      alert("success");
+      await login({
+        username: stateObject.userName,
+        password: stateObject.password,
+      });
+      dispatchFunction({
+        type: "success",
+      });
     } catch (error) {
-      alert("failure");
+      dispatchFunction({ type: "error" });
     }
   };
   return (
     <div style={{ margin: "1rem" }}>
-      <form>
-        <input type="text" placeholder="User Name" />
-        <br />
-        <br />
-        <input type="text" placeholder="Password" />
-        <br />
-        <button style={{ margin: "1rem" }} onClick={submitLoginForm}>
-          Login
-        </button>
-      </form>
+      {error !== "" ? (
+        <h2>Error occured {stateObject.error}</h2>
+      ) : isLoggedIn ? (
+        <h2>Login successful</h2>
+      ) : (
+        <form>
+          <input
+            type="text"
+            placeholder="User Name"
+            value={username}
+            onChange={(e) =>
+              dispatchFunction({
+                type: "filled",
+                fieldname: "userName",
+                payload: e.currentTarget.value,
+              })
+            }
+          />
+          <br />
+          <br />
+          <input
+            type="text"
+            placeholder="Password"
+            value={password}
+            onChange={(e) =>
+              dispatchFunction({
+                type: "filled",
+                fieldname: "password",
+                payload: e.currentTarget.value,
+              })
+            }
+          />
+          <br />
+          <button style={{ margin: "1rem" }} onClick={submitLoginForm}>
+            Login
+          </button>
+        </form>
+      )}
     </div>
   );
 }
