@@ -12,7 +12,8 @@ const loginReducer = (state, action) => {
   switch (action.type) {
     case "filled": {
       return {
-        //
+        ...state,
+        [action.fieldname]: action.payload,
       };
     }
     case "success": {
@@ -48,13 +49,8 @@ export default function LoginPage() {
     loginReducer,
     initialState
   );
-  const fieldChange = (e, key) => {
-    if (key === "username") {
-      stateObject.userName = e.target.value;
-    } else {
-      stateObject.password = e.target.value;
-    }
-  };
+
+  const { username, password, isLoggedIn, error } = stateObject;
   const submitLoginForm = async (e) => {
     e.preventDefault();
     try {
@@ -62,30 +58,46 @@ export default function LoginPage() {
         username: stateObject.userName,
         password: stateObject.password,
       });
-      dispatchFunction({ type: "success" });
+      dispatchFunction({
+        type: "success",
+      });
     } catch (error) {
       dispatchFunction({ type: "error" });
     }
   };
   return (
     <div style={{ margin: "1rem" }}>
-      {stateObject.error !== "" ? (
+      {error !== "" ? (
         <h2>Error occured {stateObject.error}</h2>
-      ) : stateObject.isLoggedIn ? (
+      ) : isLoggedIn ? (
         <h2>Login successful</h2>
       ) : (
         <form>
           <input
             type="text"
             placeholder="User Name"
-            onChange={(e) => fieldChange(e, "username")}
+            value={username}
+            onChange={(e) =>
+              dispatchFunction({
+                type: "filled",
+                fieldname: "userName",
+                payload: e.currentTarget.value,
+              })
+            }
           />
           <br />
           <br />
           <input
             type="text"
             placeholder="Password"
-            onChange={(e) => fieldChange(e, "password")}
+            value={password}
+            onChange={(e) =>
+              dispatchFunction({
+                type: "filled",
+                fieldname: "password",
+                payload: e.currentTarget.value,
+              })
+            }
           />
           <br />
           <button style={{ margin: "1rem" }} onClick={submitLoginForm}>
