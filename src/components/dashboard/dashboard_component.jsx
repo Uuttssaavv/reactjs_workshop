@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductComponent from "../product/product_component";
 import ClipLoader from "react-spinners/ClipLoader";
+import NavbarComponent from "../dashboard/navbar";
 export default function DashboardComponent() {
   const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(0);
@@ -15,7 +16,7 @@ export default function DashboardComponent() {
     try {
       setProductList([]);
       const response = await axios.get(
-        `https://dummyjson.com/products/?skip=${page * 10}&limit=10`
+        `https://dummyjson.com/products/?skip=${page * 10}&limit=30`
       );
       setProductList(response["data"]["products"]);
     } catch (e) {
@@ -35,9 +36,10 @@ export default function DashboardComponent() {
         <button onClick={() => changePage("prev")}>Prev page</button>
       )}
       <button onClick={() => changePage("")}>Next page</button> */}
+      {/* <br />
       <br />
-      <br />
-      <br />
+      <br /> */}
+      <NavbarComponent/>
       {productList.length === 0 ? (
         <div className="flex flex-col justify-center items-center justify-self-center">
           <h2 className="mb-1 text-primary text-center">Fetching Data...</h2>

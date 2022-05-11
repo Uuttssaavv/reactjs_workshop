@@ -20,7 +20,7 @@ export default function ProductComponent(props) {
         </div>
         <div className="h-64 grid place-items-stretch  w-full rounded-lg">
           <img
-            src={product.images[0]}
+            src={product.images[1]}
             alt={product.title}
             className="max-h-[80%] rounded-lg object-scale-down p-2"
           />
