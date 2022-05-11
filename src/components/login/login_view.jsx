@@ -38,6 +38,7 @@ export default function LoginPage() {
   return (
     <div className="grid place-items-center h-screen">
       <div className="w-1/3 h-[50%] self-center bg-glass backdrop-blur rounded-2xl shadow-shadow-color shadow-lg  px-8 py-12">
+
         <h1 className="font-bold text-primary text-2xl mb-8">
           Login to continue
         </h1>
