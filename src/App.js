@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/login/login_view";
 import DashboardComponent from "./components/dashboard/dashboard_component";
 import ProductDetails from "./components/product/product_detail";
+import CartView from "./components/cart/cart";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/cart" element={<CartView />} />
           <Route path="/dashboard" element={<DashboardComponent />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<LoginPage />} />

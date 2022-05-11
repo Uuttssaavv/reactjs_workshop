@@ -39,7 +39,7 @@ export default function DashboardComponent() {
       {/* <br />
       <br />
       <br /> */}
-      <NavbarComponent/>
+      <NavbarComponent />
       {productList.length === 0 ? (
         <div className="flex flex-col justify-center items-center justify-self-center">
           <h2 className="mb-1 text-primary text-center">Fetching Data...</h2>
@@ -48,13 +48,7 @@ export default function DashboardComponent() {
       ) : (
         <div className="grid  grid-cols-2 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 gap-2">
           {productList.map((product) => {
-            return (
-              // <button
-              //   onClick={() => window.open("/product/" + product.id, "_self")}
-              //   style={{ margin: "1rem" }}
-              // ></button>
-              <ProductComponent product={product} />
-            );
+            return <ProductComponent product={product} />;
           })}
         </div>
       )}

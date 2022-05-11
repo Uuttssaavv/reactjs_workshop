@@ -6,9 +6,12 @@ const NavbarComponent = () => {
         JS Commerce
       </h1>
       <div className="absolute flex flex-row justify-end w-full pr-4">
-        <div className="h-12 w-12 mr-4 rounded-full border border-white grid place-items-center text-white hover:bg-white hover:text-primary cursor-pointer">
+        <button
+          onClick={() => window.open("/cart", "_self")}
+          className="h-12 w-12 mr-4 rounded-full border border-white grid place-items-center text-white hover:bg-white hover:text-primary cursor-pointer"
+        >
           <ShoppingCartIcon className="h-8 w-8" />
-        </div>
+        </button>
 
         <div className="rounded-full h-12 w-12 bg-green-200 cursor-pointer">
           <img
