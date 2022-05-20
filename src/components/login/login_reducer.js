@@ -23,7 +23,7 @@ export const loginReducer = (state, action) => {
     case "error": {
       return {
         ...state,
-        error: "Username or Password doesn't match",
+        error: action.message,
         isLoggedIn: false,
         isLoading: false,
       };
