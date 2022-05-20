@@ -22,17 +22,23 @@ export default function LoginPage() {
     e.preventDefault();
     dispatchFunction({ type: "buttonTapped" });
     try {
-      await login({
+      const response = await login({
         username: stateObject.userName,
         password: stateObject.password,
       });
-      dispatchFunction({
-        type: "success",
-      });
-      window.open("/dashboard", "_self");
+
+      if (response.success) {
+        dispatchFunction({
+          type: "success",
+        });
+      } else {
+        dispatchFunction({ type: "error", message: response.message });
+      }
+
+      // window.open("/dashboard", "_self");
     } catch (error) {
       //
-      dispatchFunction({ type: "error" });
+      dispatchFunction({ type: "error", message: error });
     }
   };
   return (
